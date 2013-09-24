@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>parent-pom</artifactId>
+        <groupId>com.github.io.mikesena.maven</groupId>
+        <version>1.1</version>
+    </parent>
     <groupId>com.github.io.maven.plugins</groupId>
     <artifactId>environments-maven-plugin</artifactId>
     <version>0.0.11-SNAPSHOT</version>
@@ -11,15 +16,11 @@
     <inceptionYear>2013</inceptionYear>
     <scm>
         <connection>scm:git:https://github.com/mikesena/environments-maven-plugin.git</connection>
-        <url>https://github.com/mikesena/environments-maven-plugin.git</url>
         <tag>environments-maven-plugin-0.0.7</tag>
+        <url>https://github.com/mikesena/environments-maven-plugin.git</url>
     </scm>
     <properties>
-        <encoding>UTF-8</encoding>
-        <jdk.version>1.7</jdk.version>
         <maven.version>3.0.3</maven.version>
-        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
     </properties>
     <dependencies>
         <dependency>
@@ -44,48 +45,12 @@
             <version>2.1.0</version>
         </dependency>
     </dependencies>
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>file:/${basedir}/repo/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <url>file:/${basedir}/repo/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.1</version>
-                    <configuration>
-                        <source>${jdk.version}</source>
-                        <target>${jdk.version}</target>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>com.google.code.sortpom</groupId>
-                    <artifactId>maven-sortpom-plugin</artifactId>
-                    <version>2.2</version>
-                    <configuration>
-                        <createBackupFile>false</createBackupFile>
-                        <nrOfIndentSpace>4</nrOfIndentSpace>
-                        <sortProperties>true</sortProperties>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
                 <version>3.2</version>
-                <configuration>
-                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
-                </configuration>
                 <executions>
                     <execution>
                         <id>mojo-descriptor</id>
@@ -100,6 +65,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
             </plugin>
         </plugins>
     </build>
