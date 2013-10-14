@@ -115,7 +115,7 @@ public class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
         try {
             properties.load(new FileInputStream(propertiesFile));
         } catch (final FileNotFoundException e) {
-            throw new MojoExecutionException("Missing required file: " + propertiesFile.getPath());
+            throw new MojoExecutionException("Missing required file: " + propertiesFile.getPath(), e);
         } catch (final IOException e) {
             throw new MojoExecutionException("Unable to read properties file: " + propertiesFile.getPath(), e);
         }
