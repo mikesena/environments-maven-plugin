@@ -1,5 +1,6 @@
 package com.github.io.maven.plugins.environments;
 
+// CHECKSTYLE SUPPRESS AvoidStaticImport FOR 6 LINES
 import static org.twdata.maven.mojoexecutor.MojoExecutor.configuration;
 import static org.twdata.maven.mojoexecutor.MojoExecutor.element;
 import static org.twdata.maven.mojoexecutor.MojoExecutor.executeMojo;
