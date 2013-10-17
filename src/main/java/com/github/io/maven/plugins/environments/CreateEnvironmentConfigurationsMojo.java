@@ -89,10 +89,28 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
+        verifyDirectoryParameters(commonPropertiesDirectory, propertiesDirectory, templateDirectory);
         getLog().info("Creating configurations for " + environments.length + " environment(s).");
         loadCommonProperties();
         for (final String environment : environments) {
             createEnvironment(environment);
+        }
+    }
+
+    /**
+     * Utility function, to check provided File parameters exist and are directories, not files. Null values are passed,
+     * as they should reflect nullable/optional parameters, but should be checked if provided.
+     * 
+     * @param directories
+     *            List of {@link File}s to check.
+     * @throws MojoExecutionException
+     *             If a directory could not be found.
+     */
+    private void verifyDirectoryParameters(final File... directories) throws MojoExecutionException {
+        for (final File directory : directories) {
+            if (directory != null && (!directory.exists() || directory.isFile())) {
+                throw new MojoExecutionException("Unable to find directory: " + directory);
+            }
         }
     }
 
