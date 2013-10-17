@@ -60,7 +60,7 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
     private Properties initialEnvironmentProperties;
 
     /** Directory to create the environments. */
-    @Parameter(required = true)
+    @Parameter(required = true, defaultValue = "${project.build.directory}/environments")
     private File outputDirectory;
 
     /** Whether to override files that already exist when creating an environment. */
@@ -76,7 +76,7 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
     private MavenProject project;
 
     /** Input directory, containing all the environment property files. */
-    @Parameter(required = true)
+    @Parameter(required = true, defaultValue = "${basedir}/src/main/properties")
     private File propertiesDirectory;
 
     /** Maven component, that controls the session. */
@@ -84,7 +84,7 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
     private MavenSession session;
 
     /** Directory containing the environment template. */
-    @Parameter(required = true)
+    @Parameter(required = true, defaultValue = "${basedir}/src/main/environment-template")
     private File templateDirectory;
 
     @Override
