@@ -102,4 +102,17 @@
             </plugin>
         </plugins>
     </build>
+    <!-- So Travis-CI can find the repo. -->
+    <repositories>
+        <repository>
+            <id>mikesena-releases-repository</id>
+            <url>https://raw.github.com/mikesena/maven-repository/master/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
