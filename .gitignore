@@ -4,3 +4,5 @@
 /.project
 
 release.properties
+/src/it/check-pass/target
+/src/it/matching-properties/target
