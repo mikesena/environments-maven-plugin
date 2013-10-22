@@ -142,7 +142,7 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
             }
         }
 
-        if (missingKeys.size() > 0 && enforcePropertiesMustExist) {
+        if ((missingKeys.size() > 0) && enforcePropertiesMustExist) {
             throw new MojoExecutionException("Environment files must be matching in which properties they include.");
         }
     }
@@ -198,7 +198,7 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
 
     private void loadCommonProperties() throws MojoExecutionException {
         final Properties properties = new Properties();
-        if (commonPropertiesDirectory != null && commonPropertiesDirectory.exists()) {
+        if ((commonPropertiesDirectory != null) && commonPropertiesDirectory.exists()) {
             try {
                 for (final File file : commonPropertiesDirectory.listFiles()) {
                     if (!file.isDirectory() && file.getName().endsWith(PROPERTIES_FILE_SUFFIX)) {
@@ -229,7 +229,7 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
      */
     private void verifyDirectoryParameters(final File... directories) throws MojoExecutionException {
         for (final File directory : directories) {
-            if (directory != null && (!directory.exists() || directory.isFile())) {
+            if ((directory != null) && (!directory.exists() || directory.isFile())) {
                 throw new MojoExecutionException("Unable to find directory: " + directory);
             }
         }
