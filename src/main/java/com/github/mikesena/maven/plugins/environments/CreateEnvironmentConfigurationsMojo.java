@@ -111,28 +111,15 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
         }
     }
 
-    /**
-     * Utility function, to check provided File parameters exist and are directories, not files. Null values are passed,
-     * as they should reflect nullable/optional parameters, but should be checked if provided.
-     * 
-     * @param directories
-     *            List of {@link File}s to check.
-     * @throws MojoExecutionException
-     *             If a directory could not be found.
-     */
-    private void verifyDirectoryParameters(final File... directories) throws MojoExecutionException {
-        for (final File directory : directories) {
-            if (directory != null && (!directory.exists() || directory.isFile())) {
-                throw new MojoExecutionException("Unable to find directory: " + directory);
-            }
+    private void checkProperties(final Properties newProps) throws MojoExecutionException {
+        if (initialEnvironmentProperties == null) {
+            initialEnvironmentProperties = newProps;
+        } else {
+            compareProperties(newProps);
         }
     }
 
     private void compareProperties(final Properties newProps) throws MojoExecutionException {
-        if (initialEnvironmentProperties == null) {
-            initialEnvironmentProperties = newProps;
-            return;
-        }
         final Set<Object> newKeys = newProps.keySet();
         final List<Object> missingKeys = new ArrayList<>();
         for (final Object key : initialEnvironmentProperties.keySet()) {
@@ -155,7 +142,7 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
             }
         }
 
-        if (missingKeys.size() > 0 && enforcePropertiesMustExist) {
+        if ((missingKeys.size() > 0) && enforcePropertiesMustExist) {
             throw new MojoExecutionException("Environment files must be matching in which properties they include.");
         }
     }
@@ -174,7 +161,7 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
     private void createEnvironment(final String environment) throws MojoExecutionException {
         getLog().info("Creating environment: " + environment);
         final Properties environmentProperties = getEnvironmentProperties(environment);
-        compareProperties(environmentProperties);
+        checkProperties(environmentProperties);
         final Properties originalProperties = (Properties) project.getProperties().clone();
         final File environmentOutputDirectory = new File(outputDirectory, environment);
         if (environmentOutputDirectory.exists()) {
@@ -211,7 +198,7 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
 
     private void loadCommonProperties() throws MojoExecutionException {
         final Properties properties = new Properties();
-        if (commonPropertiesDirectory != null && commonPropertiesDirectory.exists()) {
+        if ((commonPropertiesDirectory != null) && commonPropertiesDirectory.exists()) {
             try {
                 for (final File file : commonPropertiesDirectory.listFiles()) {
                     if (!file.isDirectory() && file.getName().endsWith(PROPERTIES_FILE_SUFFIX)) {
@@ -229,5 +216,22 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
         getLog().debug("Resetting properties back to their original.");
         project.getProperties().clear();
         project.getProperties().putAll(originalProperties);
+    }
+
+    /**
+     * Utility function, to check provided File parameters exist and are directories, not files. Null values are passed,
+     * as they should reflect nullable/optional parameters, but should be checked if provided.
+     * 
+     * @param directories
+     *            List of {@link File}s to check.
+     * @throws MojoExecutionException
+     *             If a directory could not be found.
+     */
+    private void verifyDirectoryParameters(final File... directories) throws MojoExecutionException {
+        for (final File directory : directories) {
+            if ((directory != null) && (!directory.exists() || directory.isFile())) {
+                throw new MojoExecutionException("Unable to find directory: " + directory);
+            }
+        }
     }
 }
