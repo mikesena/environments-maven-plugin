@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.io.maven.plugins</groupId>
+    <groupId>com.github.mikesena.maven.plugins</groupId>
     <artifactId>directories-exist</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -11,7 +11,7 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.github.io.maven.plugins</groupId>
+                <groupId>com.github.mikesena.maven.plugins</groupId>
                 <artifactId>environments-maven-plugin</artifactId>
                 <version>@pom.version@</version>
                 <executions>
