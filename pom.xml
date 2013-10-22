@@ -81,8 +81,9 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
+                            <skipInvocation>${skipTests}</skipInvocation>
                             <disableReports>true</disableReports>
-                            <streamLogs>true</streamLogs>
+                            <streamLogs>false</streamLogs>
                         </configuration>
                     </execution>
                 </executions>
