@@ -4,7 +4,7 @@
     <parent>
         <artifactId>parent-pom</artifactId>
         <groupId>com.github.mikesena.maven.shared</groupId>
-        <version>2</version>
+        <version>2.0-SNAPSHOT</version>
     </parent>
     <groupId>com.github.mikesena.maven.plugins</groupId>
     <artifactId>environments-maven-plugin</artifactId>
@@ -16,7 +16,6 @@
     <inceptionYear>2013</inceptionYear>
     <scm>
         <connection>scm:git:https://github.com/mikesena/environments-maven-plugin.git</connection>
-        <tag>environments-maven-plugin-0.0.7</tag>
         <url>https://github.com/mikesena/environments-maven-plugin.git</url>
     </scm>
     <properties>
@@ -45,19 +44,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    <!-- So Travis-CI can find the repo. -->
-    <repositories>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>mikesena-releases-repository</id>
-            <url>https://raw.github.com/mikesena/maven-repository/master/releases</url>
-        </repository>
-    </repositories>
     <build>
         <plugins>
             <plugin>
