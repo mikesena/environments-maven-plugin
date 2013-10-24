@@ -14,6 +14,23 @@
     <description>Allows for the creation of Environment configurations, which can then be packaged into specific releases.</description>
     <url>https://github.com/mikesena/environments-maven-plugin</url>
     <inceptionYear>2013</inceptionYear>
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>http://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+            <comments></comments>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>mikesena</id>
+            <name>Michael Sena</name>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
     <scm>
         <connection>scm:git:https://github.com/mikesena/environments-maven-plugin.git</connection>
         <url>https://github.com/mikesena/environments-maven-plugin.git</url>
@@ -44,6 +61,18 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    <pluginRepositories>
+        <pluginRepository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>sonatype-releases</id>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+        </pluginRepository>
+    </pluginRepositories>
     <build>
         <plugins>
             <plugin>
@@ -105,16 +134,4 @@
             </plugin>
         </plugins>
     </build>
-    <pluginRepositories>
-    	<pluginRepository>
-    		<id>sonatype-releases</id>
-    		<url>https://oss.sonatype.org/content/repositories/releases</url>
-    		<releases>
-    			<enabled>true</enabled>
-    		</releases>
-    		<snapshots>
-    			<enabled>false</enabled>
-    		</snapshots>
-    	</pluginRepository>
-    </pluginRepositories>
 </project>
