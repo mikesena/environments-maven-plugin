@@ -112,10 +112,11 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
     }
 
     private void checkProperties(final Properties newProps) throws MojoExecutionException {
+        final Properties clonedProps = (Properties) newProps.clone();
         if (initialEnvironmentProperties == null) {
-            initialEnvironmentProperties = newProps;
+            initialEnvironmentProperties = clonedProps;
         } else {
-            compareProperties(newProps);
+            compareProperties(clonedProps);
         }
     }
 
