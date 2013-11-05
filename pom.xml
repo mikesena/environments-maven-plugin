@@ -31,12 +31,6 @@
             </roles>
         </developer>
     </developers>
-    <distributionManagement>
-        <site>
-            <id>github-pages</id>
-            <url>${site.location}/${project.artifactId}</url>
-        </site>
-    </distributionManagement>
     <scm>
         <connection>scm:git:https://github.com/mikesena/environments-maven-plugin.git</connection>
         <url>https://github.com/mikesena/environments-maven-plugin.git</url>
