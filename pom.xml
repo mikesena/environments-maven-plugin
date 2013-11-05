@@ -8,7 +8,7 @@
     </parent>
     <groupId>com.github.mikesena.maven.plugins</groupId>
     <artifactId>environments-maven-plugin</artifactId>
-    <version>0.0.16-SNAPSHOT</version>
+    <version>0.0.17-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <name>Environments Maven Plugin</name>
     <description>Allows for the creation of Environment configurations, which can then be packaged into specific releases.</description>
