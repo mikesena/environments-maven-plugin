@@ -6,3 +6,4 @@
 release.properties
 /src/it/check-pass/target
 /src/it/matching-properties/target
+/src/it/filename-filtering/target
