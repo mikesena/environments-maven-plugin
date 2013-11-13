@@ -10,9 +10,6 @@ import java.util.Properties;
  * 
  */
 public final class MavenFilteringUtil {
-    /** Matches Ant-style properties in a string: i.e. ${prop.name}. */
-    private static final String PATTERN = ".*\\$\\{.+\\}.*";
-
     /**
      * Performs Maven-style filtering on a directory. Allows filenames to be dynamically renamed, based on properties.
      * 
@@ -27,12 +24,14 @@ public final class MavenFilteringUtil {
                 doFilenameFiltering(file, properties);
             } else {
                 String fileName = file.getName();
-                while (fileName.matches(PATTERN)) {
-                    final String property = fileName.substring(fileName.indexOf("${") + 2, fileName.indexOf('}'));
+                int i = fileName.indexOf("${");
+                while (i >= 0) {
+                    final String property = fileName.substring(i + 2, fileName.indexOf('}', i));
                     if (properties.containsKey(property)) {
                         final String value = properties.getProperty(property);
                         fileName = fileName.replaceAll("\\$\\{" + property + "\\}", value);
                     }
+                    i = fileName.indexOf("${", i + 1);
                 }
                 if (!fileName.equals(file.getName())) {
                     file.renameTo(new File(file.getParentFile(), fileName));

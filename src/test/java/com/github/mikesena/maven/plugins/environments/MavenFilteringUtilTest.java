@@ -56,6 +56,11 @@ public final class MavenFilteringUtilTest {
     }
 
     @Test
+    public void testFilenameFilteringWithMissingParameter() throws IOException {
+        doFilenameFilterTest("file2-${env.fake}.txt", new File(testDir, "file2-${env.fake}.txt"));
+    }
+
+    @Test
     public void testFilenameFilteringWithNoParameters() throws IOException {
         properties.put("env.name", "env1");
         doFilenameFilterTest("file3.txt", new File(testDir, "file3.txt"));
