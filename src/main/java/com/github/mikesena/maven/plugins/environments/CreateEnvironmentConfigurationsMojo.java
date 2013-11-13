@@ -70,6 +70,10 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
     @Parameter(required = true)
     private String[] environments;
 
+    /** Whether directory & file names are filtered (allows files to be renamed based on a property). */
+    @Parameter(required = false, defaultValue = "true")
+    private boolean filterOnFilenames;
+
     /** Used when verifying consistency & completeness between environment files. */
     private Properties initialEnvironmentProperties;
 
@@ -157,6 +161,9 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
                                                         templateDirectory.getPath()), MojoExecutor.element("filtering",
                                                         "true")))), MojoExecutor.executionEnvironment(project, session,
                                         pluginManager));
+
+        // Rename files with filtering
+        MavenFilteringUtil.doFilenameFiltering(environmentOutputDirectory, project.getProperties());
     }
 
     private void createEnvironment(final String environment) throws MojoExecutionException {
