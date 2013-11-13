@@ -163,7 +163,10 @@ public final class CreateEnvironmentConfigurationsMojo extends AbstractMojo {
                                         pluginManager));
 
         // Rename files with filtering
-        MavenFilteringUtil.doFilenameFiltering(environmentOutputDirectory, project.getProperties());
+        if (filterOnFilenames) {
+            getLog().info("Filtering on filenames.");
+            MavenFilteringUtil.doFilenameFiltering(environmentOutputDirectory, project.getProperties());
+        }
     }
 
     private void createEnvironment(final String environment) throws MojoExecutionException {
